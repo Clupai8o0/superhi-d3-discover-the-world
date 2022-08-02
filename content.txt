@@ -1,0 +1,24 @@
+Links:
+https://discover-the-world-draft.superhi.com/
+https://www.numbeo.com/cost-of-living/
+
+
+Colors:
+
+Background: #fff9f9
+Primary color: #ff0000
+
+Sizes:
+
+Page width: 960px
+Height of visualization: 720px
+
+Typography:
+
+Work Sans
+
+Axis labels: 24px
+Axis ticks: 12px
+Hover text: 14px
+
+
