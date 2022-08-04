@@ -1,7 +1,7 @@
 const selectTags = document.querySelectorAll("select");
 const svg = d3.select("svg");
 
-svg.attr("width", 960).attr("height", 720);
+svg.attr("viewBox", "0 0 960 720")
 
 // axes
 const axisXGroup = svg
@@ -62,7 +62,7 @@ const placeCities = () => {
 
 	const cities = svg
 		.selectAll("g.city")
-		.data(data)
+		.data(data, (d) => d.city)
 		.enter()
 		.append("g")
 		.attr("class", "city")
@@ -97,6 +97,10 @@ const placeCities = () => {
 				y = d[valueY];
 			return `translate(${scaleX(x)}, ${scaleY(y)})`;
 		});
+
+	svg.selectAll("g.city").on("mouseover", () => {
+		d3.select(this).raise();
+	});
 };
 
 placeCities();
