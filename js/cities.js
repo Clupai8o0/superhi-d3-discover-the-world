@@ -13,12 +13,29 @@ const axisYGroup = svg
 	.attr("class", "y-axis")
 	.attr("transform", "translate(100, 0)");
 
+const axisXText = svg
+	.append("text")
+	.attr("class", "x-axis")
+	.attr("transform", "translate(480, 670)")
+	.text("x axis");
+const axisYText = svg
+	.append("text")
+	.attr("class", "x-axis")
+	.attr("transform", "translate(30, 360) rotate(-90)")
+	.text("y axis");
+
 const placeCities = () => {
 	const inputX = document.querySelector("select[name=valueX]"),
 		inputY = document.querySelector("select[name=valueY]");
 
 	const valueX = inputX.value;
 	const valueY = inputY.value;
+
+	const textX = inputX.options[inputX.selectedIndex].innerHTML;
+	const textY = inputY.options[inputY.selectedIndex].innerHTML;
+
+	axisXText.text(textX);
+	axisYText.text(textY);
 
 	const maxValueX = d3.max(data, (d) => d[valueX]);
 	const maxValueY = d3.max(data, (d) => d[valueY]);
@@ -38,7 +55,8 @@ const placeCities = () => {
 		.axisLeft(scaleY)
 		.tickSizeInner(-760)
 		.tickSizeOuter(0)
-		.tickPadding(10);
+		.tickPadding(10)
+		.ticks(10, "$,f");
 	axisXGroup.call(axisX);
 	axisYGroup.call(axisY);
 
@@ -58,6 +76,17 @@ const placeCities = () => {
 		.attr("cx", 0)
 		.attr("cy", 0)
 		.attr("r", (d) => scaleR(d.population));
+	cities
+		.append("rect")
+		.attr("x", -60)
+		.attr("y", (d) => -1 * scaleR(d.population) - 35)
+		.attr("width", 120)
+		.attr("height", 30);
+	cities
+		.append("text")
+		.attr("x", 0)
+		.attr("y", (d) => -1 * scaleR(d.population) - 15)
+		.text((d) => d.city);
 
 	svg
 		.selectAll("g.city")

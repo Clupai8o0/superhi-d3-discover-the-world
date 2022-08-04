@@ -39,3 +39,21 @@ line {
 path.domain {
 	stroke-width: 3px;
 }
+
+
+text.x-axis, text.y-axis {
+	fill: var(--primary-color);
+	font-size: 24px;
+	text-anchor: middle;
+	dominant-baseline: middle2;
+}
+
+g.city rect {
+	fill: var(--primary-color);
+}
+
+g.city text {
+	fill: var(--background);
+	text-anchor: middle;
+	font-size: 14px;
+}
