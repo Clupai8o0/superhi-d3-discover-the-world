@@ -3,6 +3,16 @@ const svg = d3.select("svg");
 
 svg.attr("width", 960).attr("height", 720);
 
+// axes
+const axisXGroup = svg
+	.append("g")
+	.attr("class", "x-axis")
+	.attr("transform", "translate(0, 620)");
+const axisYGroup = svg
+	.append("g")
+	.attr("class", "y-axis")
+	.attr("transform", "translate(100, 0)");
+
 const placeCities = () => {
 	const inputX = document.querySelector("select[name=valueX]"),
 		inputY = document.querySelector("select[name=valueY]");
@@ -17,6 +27,11 @@ const placeCities = () => {
 	const scaleX = d3.scaleLinear().domain([0, maxValueX]).range([100, 860]);
 	const scaleY = d3.scaleLinear().domain([0, maxValueY]).range([620, 100]);
 	const scaleR = d3.scaleSqrt().domain([0, maxValueR]).range([0, 30]);
+
+	const axisX = d3.axisBottom(scaleX);
+	axisXGroup.call(axisX);
+	const axisY = d3.axisLeft(scaleY);
+	axisYGroup.call(axisY);
 
 	const cities = svg
 		.selectAll("g.city")
