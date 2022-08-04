@@ -28,9 +28,18 @@ const placeCities = () => {
 	const scaleY = d3.scaleLinear().domain([0, maxValueY]).range([620, 100]);
 	const scaleR = d3.scaleSqrt().domain([0, maxValueR]).range([0, 30]);
 
-	const axisX = d3.axisBottom(scaleX);
+	const axisX = d3
+		.axisBottom(scaleX)
+		.tickSizeInner(-520)
+		.tickSizeOuter(0)
+		.tickPadding(10)
+		.ticks(10, "$,f");
+	const axisY = d3
+		.axisLeft(scaleY)
+		.tickSizeInner(-760)
+		.tickSizeOuter(0)
+		.tickPadding(10);
 	axisXGroup.call(axisX);
-	const axisY = d3.axisLeft(scaleY);
 	axisYGroup.call(axisY);
 
 	const cities = svg

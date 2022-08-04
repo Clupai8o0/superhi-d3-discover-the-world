@@ -30,3 +30,12 @@ circle {
 	stroke: var(--background);
 	stroke-width: 3px;
 }
+
+line {
+	stroke-width: 1px;
+	stroke-dasharray: 2 8;
+}
+
+path.domain {
+	stroke-width: 3px;
+}
