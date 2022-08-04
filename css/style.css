@@ -50,12 +50,19 @@ text.x-axis, text.y-axis {
 
 g.city rect {
 	fill: var(--primary-color);
+	opacity: 0;
+	transition: opacity 0.25s;
 }
 
 g.city text {
 	fill: var(--background);
 	text-anchor: middle;
 	font-size: 14px;
+	opacity: 0;
+}
+
+g.city:hover rect, g.city:hover text {
+	opacity: 1;
 }
 
 @media (max-width: 1000px) {
