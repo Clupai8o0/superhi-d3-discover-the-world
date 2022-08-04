@@ -18,9 +18,15 @@ body {
 }
 
 h1 {
-  margin: 0 0 48px 0;
+	margin: 0 0 48px 0;
 }
 
 span {
-  margin: 0 8px;
+	margin: 0 8px;
+}
+
+circle {
+	fill: var(--primary-color);
+	stroke: var(--background);
+	stroke-width: 3px;
 }

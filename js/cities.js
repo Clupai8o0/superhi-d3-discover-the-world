@@ -12,9 +12,11 @@ const placeCities = () => {
 
 	const maxValueX = d3.max(data, (d) => d[valueX]);
 	const maxValueY = d3.max(data, (d) => d[valueY]);
+	const maxValueR = d3.max(data, (d) => d.population);
 
 	const scaleX = d3.scaleLinear().domain([0, maxValueX]).range([100, 860]);
 	const scaleY = d3.scaleLinear().domain([0, maxValueY]).range([620, 100]);
+	const scaleR = d3.scaleSqrt().domain([0, maxValueR]).range([0, 30]);
 
 	const cities = svg
 		.selectAll("g.city")
@@ -27,13 +29,21 @@ const placeCities = () => {
 				y = d[valueY];
 			return `translate(${scaleX(x)}, ${scaleY(y)})`;
 		});
-	cities.append("circle").attr("cx", 0).attr("cy", 0).attr("r", 15);
+	cities
+		.append("circle")
+		.attr("cx", 0)
+		.attr("cy", 0)
+		.attr("r", (d) => scaleR(d.population));
 
-	svg.selectAll("g.city").transition().duration(500).attr("transform", (d) => {
-		const x = d[valueX],
-			y = d[valueY];
-		return `translate(${scaleX(x)}, ${scaleY(y)})`;
-	});
+	svg
+		.selectAll("g.city")
+		.transition()
+		.duration(500)
+		.attr("transform", (d) => {
+			const x = d[valueX],
+				y = d[valueY];
+			return `translate(${scaleX(x)}, ${scaleY(y)})`;
+		});
 };
 
 placeCities();
